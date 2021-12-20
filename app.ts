@@ -1,5 +1,9 @@
 const weightInput = document.querySelector<HTMLInputElement>('.weight-input')
-
+function init() {
+	weightInput.value = "";
+	}
+	window.onload = init;
+    
 const createSnow = () => {
 	const star = document.createElement('i')
 	// const star2 = document.createElement('i')
@@ -54,13 +58,14 @@ function YourWeight(weight:number, a: number) {
 YourWeight(3, 3)
 
 console.log(weightInput.value)
-
+const stats =document.querySelector<HTMLElement>('.stats')
+const navbarDiv = document.querySelector<HTMLElement>('.navbar')
 const navbar = document.querySelectorAll('.navbar-el')
-const mercury = document.querySelector('.mercury')
-const venus = document.querySelector('.venus')
-const mars = document.querySelector('.mars')
-const jupiter = document.querySelector('.jupiter')
-const saturn = document.querySelector('.saturn')
+const mercuryTab = document.querySelector('.mercury')
+const venusTab = document.querySelector('.venus')
+const marsTab = document.querySelector('.mars')
+const jupiterTab = document.querySelector('.jupiter')
+const saturnTab = document.querySelector('.saturn')
 const result = document.querySelector<HTMLElement>('.result')
 const submit = document.querySelector<HTMLElement>('.submit')
 const chosePlanetTitle = document.querySelector<HTMLElement>('.chose-planet-title')
@@ -68,18 +73,52 @@ const chosePlanetTitle = document.querySelector<HTMLElement>('.chose-planet-titl
 submit.addEventListener('click', ()=>{
 	submit.style.borderStyle = "solid"
 	chosePlanetTitle.style.display = "block"
+	navbarDiv.style.display = "grid"
 } )
 
+function Planet(name:string, gravity:number, funFact:string) {
+	this.name = name,
+	this.gravity = gravity,
+	this.funFact = funFact,
+	this.calculateWeight = function(){// @ts-ignore
+		return weightInput.value * this.gravity
+	}
+}
+
+const mercury = new Planet('Mercury', 56, "blabla")
+const venus = new Planet('Venus', 52336, "blabla")
+const mars = new Planet('Mars', 546, "blabla")
+const jupiter = new Planet('Jupiter', 556, "blabla")
+const saturn = new Planet('Saturn', 6, "blabla")
+const uranus = new Planet('Uranus', 576, "blabla")
+const neptun = new Planet('Neptun', 56, "blabla")
+const pluto = new Planet('Pluto', 56, "blabla")
+const moon = new Planet('Moon', 56, "blabla")
+const sun = new Planet('Sun', 56, "blabla")
+const blackHole = new Planet('Black Hole NGC 4889', 56, "blabla")
+
+
+const arr = [mercury, venus, mars, jupiter, saturn, uranus, neptun, pluto, moon, sun, blackHole]
 
 navbar.forEach((elem, index)=>{
-	elem.addEventListener('click', ()=>{// @ts-ignore
-		console.log(weightInput.value * planetGravity[index])
+	elem.innerHTML += `${arr[index].name}`
+	elem.addEventListener('click', ()=>{
+		if(arr[index] == blackHole){
+			console.log('pupa')
+			stats.style.animationPlayState = 'running'
+		}
 		
 		result.style.opacity = '0'
-		result.style.transition = '200ms ease'
+		console.log(arr[index].calculateWeight)
+		result.style.transition = '300ms ease'
 		setTimeout(() => {// @ts-ignore
-			
+			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()}`
 			result.style.opacity = '1'
-		}, 200);
+		}, 300);
 	})
 })
+
+
+
+
+console.log(arr)

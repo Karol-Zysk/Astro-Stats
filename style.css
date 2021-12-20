@@ -42,28 +42,26 @@ img{
     height: 70vh;
     width: 49vw;
     background-color: rgb(0, 0, 0);
-    animation: bh-influence 2s linear 1 ;
+    animation: bh-influence 5s linear 1 paused;
     filter: brightness(80%);
     
 }
 
 .stat{
-    height: 25vh;
-    display: flex;
+    height: 20vh;
+    /* display: flex; */
     flex-direction: column;
 }
 
 .stat-el{
-    border: white 2px dashed;
-    justify-content: center;
+   
     width: max-content;
-    margin: auto;
+    margin-left: 0.5vw;
 }
 .input{
-
+    position: relative;
     display: flex;
-    /* background-color: black; */
-    margin: auto;
+    margin-top: 2vh;
     width: max-content;
     flex-wrap: wrap;
     /* color: white; */
@@ -101,7 +99,7 @@ input[type=number] {
 .weight-input{
     border: 5px solid black;
     justify-self: center;
-    font-size: 3vh;
+    font-size: 3.2vh;
     margin-right: 1vw;
     color: white;
     caret-color: rgb(255, 255, 255);
@@ -132,8 +130,8 @@ input[type=number] {
 .submit-2{
     display: flex;
     border: none;
-    font-size: 3.5vh;
-    width: 12.5vw;
+    font-size: 3.7vh;
+    width: 13.5vw;
     height: 6vh;
     text-align: center;
     align-items: center;
@@ -150,7 +148,7 @@ input[type=number] {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     color: white;
-    display: grid;
+    display: none;
     height: 24vh;
     /* align-items: center;
     justify-content: space-around;
@@ -209,11 +207,12 @@ input[type=number] {
 
 .submit{
     display: flex;
-    font-size: 3.5vh;
+    font-size: 3.7vh;
     width: 5vw;
     height: 6vh;
     text-align: center;
     align-items: center;
+    justify-content: center;
     color: white;
     cursor: pointer;
 }
@@ -225,7 +224,7 @@ input[type=number] {
     margin-left: 1vw ;
     margin-top: 2vh;
     opacity: 0;
-    transition: all 100ms ease;
+    transition: all 300ms ease;
 }
 
 .info{
