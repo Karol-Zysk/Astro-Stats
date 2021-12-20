@@ -34,7 +34,13 @@ const planetGravity: Array<number> = [
 	35,
 	45,
 	55,
-	900
+	900,
+	1000,
+	123333,
+	30000,
+	40000,
+	70000,
+	1232423423532462,
 ]
 
 
@@ -55,12 +61,25 @@ const venus = document.querySelector('.venus')
 const mars = document.querySelector('.mars')
 const jupiter = document.querySelector('.jupiter')
 const saturn = document.querySelector('.saturn')
-const result = document.querySelector('.result')
+const result = document.querySelector<HTMLElement>('.result')
+const submit = document.querySelector<HTMLElement>('.submit')
+const chosePlanetTitle = document.querySelector<HTMLElement>('.chose-planet-title')
+
+submit.addEventListener('click', ()=>{
+	submit.style.borderStyle = "solid"
+	chosePlanetTitle.style.display = "block"
+} )
 
 
 navbar.forEach((elem, index)=>{
 	elem.addEventListener('click', ()=>{// @ts-ignore
-		console.log(weightInput.value * planetGravity[index])// @ts-ignore
-		result.innerHTML = `Your weight on ${elem.textContent} is ${weightInput.value * planetGravity[index]}kg`
+		console.log(weightInput.value * planetGravity[index])
+		
+		result.style.opacity = '0'
+		result.style.transition = '200ms ease'
+		setTimeout(() => {// @ts-ignore
+			
+			result.style.opacity = '1'
+		}, 200);
 	})
 })

@@ -41,7 +41,10 @@ img{
     grid-row: 2 / 3;
     height: 70vh;
     width: 49vw;
-    background-color: rgb(156, 14, 14);
+    background-color: rgb(0, 0, 0);
+    animation: bh-influence 2s linear 1 ;
+    filter: brightness(80%);
+    
 }
 
 .stat{
@@ -51,32 +54,90 @@ img{
 }
 
 .stat-el{
-    border: white 5px solid;
+    border: white 2px dashed;
     justify-content: center;
     width: max-content;
     margin: auto;
 }
 .input{
+
     display: flex;
+    /* background-color: black; */
     margin: auto;
     width: max-content;
     flex-wrap: wrap;
+    /* color: white; */
     
 }
+::placeholder {
+    color: rgb(255, 255, 255);
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: rgb(255, 255, 255);
+  }
+
+  
+
+input[type="number"], textarea {
+
+    background-color : #000000; 
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number]:focus {
+    border: 2px solid rgb(0, 0, 0);
+    outline: none;
+  }
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .weight-input{
+    border: 5px solid black;
     justify-self: center;
     font-size: 3vh;
     margin-right: 1vw;
+    color: white;
+    caret-color: rgb(255, 255, 255);
+    width: 3vw;
 }
+
+.weight-input:placeholder {
+    color: rgb(255, 255, 255);
+    font-size: 3.5vh;
+    height: 15vw;
+    margin-left: 2px;
+  }
 
 .chose-planet-title{
     font-size: 1.7vw;
     word-wrap: normal;
     display: none;
+    color: white;
+    border: none;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
-.submit{
-    font-size: 3vh;
+
+
+
+
+.submit-2{
+    display: flex;
+    border: none;
+    font-size: 3.5vh;
+    width: 12.5vw;
+    height: 6vh;
+    text-align: center;
+    align-items: center;
+    color: white;
     
 }
 
@@ -90,7 +151,6 @@ img{
     grid-template-rows: 1fr 1fr 1fr;
     color: white;
     display: grid;
-    border: blanchedalmond 5px solid;
     height: 24vh;
     /* align-items: center;
     justify-content: space-around;
@@ -100,10 +160,7 @@ img{
     /* flex: 1; */
 }
 
-.black-hole{
-    grid-column: 1 / -1;
-    text-align: center;
-}
+
 
 .black-hole:hover{
     animation: my-move 170ms ease 0s 1 forwards ;
@@ -112,23 +169,63 @@ img{
 
 .navbar-el{
     font-size: 2vw;
-    border: white solid 5px;
+    border: white  2px;
+    border-style: dashed;
     text-align: center;
     /* flex: 1;
     justify-content: center; */
 }
 
+.black-hole{
+    grid-column: 1 / -1;
+    text-align: center;
+    border-top: none;
+}
 .navbar-el:hover{
-    background-color: rgb(5, 5, 5);
-    border: white solid 5px;
+    background-color: rgba(5, 5, 5, 0.664);
+    border: white double 1px;
     cursor: pointer;
 }
+
+.sun:hover{
+    border: none;
+    border-radius: 100%;
+
+    position: relative;
+    height: 250%;
+    top: -5vh;
+    justify-content: center;
+    color: black;
+    display: flex;
+    z-index: 5;
+    background-color: rgb(255, 255, 255);
+    box-shadow: inset 0 0em 3.5em rgb(251, 255, 0), 0em 0em 3em 2em yellow;
+    align-items: center;
+    filter: brightness(150%);
+    text-align: center;
+    transition: all 1200ms linear;
+    transition-delay: background-color 1400ms;
+}
+
+.submit{
+    display: flex;
+    font-size: 3.5vh;
+    width: 5vw;
+    height: 6vh;
+    text-align: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+
 
 .result{
     color: blanchedalmond;
     font-size: 2vw;
-    margin: auto;
+    margin-left: 1vw ;
     margin-top: 2vh;
+    opacity: 0;
+    transition: all 100ms ease;
 }
 
 .info{
@@ -156,7 +253,7 @@ img{
 }
 
 .title{
-    font-size: 6vh;
+    font-size: 8vh;
     color: white;
     font-weight: 700;
     margin-top: 1vh;
@@ -227,4 +324,39 @@ i.star2 {
       transform: translatex(5vw);
       color: rgb(255, 0, 0);
     }
+  }
+
+  @keyframes bh-influence {
+      0%{
+            filter: brightness(120%)
+      }
+      2%{
+            filter: brightness(50%)
+      }
+      6%{
+            filter: brightness(110%)
+      }
+      9%{
+            filter: brightness(20%)
+      }
+      11%{
+            filter: brightness(200%)
+      }
+      13%{
+            filter: brightness(20%);
+      }
+      14%{
+            filter: brightness(20%);
+      }
+      15%{
+            filter: brightness(200%)
+      }
+      
+      16%{
+            filter: brightness(0%);
+            
+      }
+      100%{
+            filter: brightness(0%);
+      }
   }

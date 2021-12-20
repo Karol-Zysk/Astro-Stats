@@ -27,7 +27,13 @@ var planetGravity = [
     35,
     45,
     55,
-    900
+    900,
+    1000,
+    123333,
+    30000,
+    40000,
+    70000,
+    1232423423532462,
 ];
 function YourWeight(weight, a) {
     var planetWeight = weight * planetGravity[a];
@@ -42,9 +48,19 @@ var mars = document.querySelector('.mars');
 var jupiter = document.querySelector('.jupiter');
 var saturn = document.querySelector('.saturn');
 var result = document.querySelector('.result');
+var submit = document.querySelector('.submit');
+var chosePlanetTitle = document.querySelector('.chose-planet-title');
+submit.addEventListener('click', function () {
+    submit.style.borderStyle = "solid";
+    chosePlanetTitle.style.display = "block";
+});
 navbar.forEach(function (elem, index) {
     elem.addEventListener('click', function () {
-        console.log(weightInput.value * planetGravity[index]); // @ts-ignore
-        result.innerHTML = "Twoja waga na ".concat(elem.textContent, " wynosi ").concat(weightInput.value * planetGravity[index]);
+        console.log(weightInput.value * planetGravity[index]);
+        result.style.opacity = '0';
+        result.style.transition = '200ms ease';
+        setTimeout(function () {
+            result.style.opacity = '1';
+        }, 200);
     });
 });
