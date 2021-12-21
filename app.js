@@ -94,7 +94,9 @@ navbar.forEach(function (elem, index) {
         setTimeout(function () {
             result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight());
             result.style.opacity = '1';
+            infoDiv.innerHTML = "<div class=\"info grid-elem\">\n\t<div class=\"celestial-body\" style=\"background-image: url(./img/".concat(arr[index].name, ".png);\"></div>\n\t<div class=\"info-title\">").concat(arr[index].name, "</div>\n\t<div class=\"info-body\">The universal force of attraction acting between all matter.<br>").concat(arr[index].funFact, "<br>\n\tbut what would happen if we suddenly found ourselves on another planet?</div>\n\t</div>");
         }, 300);
     });
 });
+var infoDiv = document.querySelector('.info');
 console.log(arr);

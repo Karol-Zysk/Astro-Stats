@@ -114,9 +114,17 @@ navbar.forEach((elem, index)=>{
 		setTimeout(() => {// @ts-ignore
 			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()}`
 			result.style.opacity = '1'
+			infoDiv.innerHTML = `<div class="info grid-elem">
+	<div class="celestial-body" style="background-image: url(./img/${arr[index].name}.png);"></div>
+	<div class="info-title">${arr[index].name}</div>
+	<div class="info-body">The universal force of attraction acting between all matter.<br>${arr[index].funFact}<br>
+	but what would happen if we suddenly found ourselves on another planet?</div>
+	</div>`
 		}, 300);
 	})
 })
+
+const infoDiv = document.querySelector('.info')
 
 
 
