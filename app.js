@@ -93,29 +93,24 @@ navbar.forEach(function (elem, index) {
             stats.style.animationPlayState = 'running';
             var infoDiv_1 = document.querySelector('.info').style.animationPlayState = 'running';
         }
+        fetch('./facts.json')
+            .then(function (response) {
+            return response.json();
+        })
+            .then(function (facts) {
+            var factName = arr[index].name;
+            infoDiv.style.transition = "ease 300ms";
+            var celestialBody = document.querySelector('.celestial-body').style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
+            var infoTitle = document.querySelector('.info-title').innerHTML = "".concat(arr[index].name);
+            var infoBody = document.querySelector('.info-body').innerHTML = "<span>Size: </span>".concat(facts["".concat(factName)].Size, " km<br>\n\t\t<span>Avarage Temperature: </span> ").concat(facts["".concat(factName)].AvarageTemp, "'C <br>\n\t\t<span>Info: </span> ").concat(facts["".concat(factName)].FunFact, "_");
+        });
         result.style.opacity = '0';
         console.log(arr[index].calculateWeight);
         result.style.transition = '300ms ease';
         setTimeout(function () {
+            infoDiv.style.backgroundImage = "none";
             result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight(), " kg");
             result.style.opacity = '1';
-            fetch('./facts.json')
-                .then(function (response) {
-                return response.json();
-            })
-                .then(function (facts) {
-                var factName = arr[index].name;
-                infoDiv.style.transition = "ease 300ms";
-                var celestialBody = document.querySelector('.celestial-body').style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
-                var infoTitle = document.querySelector('.info-title').innerHTML = "".concat(arr[index].name);
-                var infoBody = document.querySelector('.info-body').innerHTML = "<span>Size: </span>".concat(facts["".concat(factName)].Size, " km<br>\n\t\t<span>Avarage Temperature: </span> ").concat(facts["".concat(factName)].AvarageTemp, "'C <br>\n\t\t<span>Info: </span> ").concat(facts["".concat(factName)].FunFact, "_");
-                infoDiv.style.filter = "brightness(0%)";
-                infoDiv.style.transition = '300ms ease';
-                setTimeout(function () {
-                    infoDiv.style.backgroundImage = "none";
-                    infoDiv.style.filter = "brightness(100%)";
-                }, 300);
-            });
         }, 300);
     });
 });

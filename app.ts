@@ -114,17 +114,8 @@ navbar.forEach((elem, index)=>{
 			const infoDiv = document.querySelector<HTMLElement>('.info').style.animationPlayState = 'running'
 		}
 		
-		result.style.opacity = '0'
-		console.log(arr[index].calculateWeight)
-		result.style.transition = '300ms ease'
-
-		setTimeout(() => {// @ts-ignore
-			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()} kg`
-			result.style.opacity = '1'
-
-			
 	
-	fetch('./facts.json')
+		fetch('./facts.json')
 	.then(function  (response) {
 	  return response.json();
 	})
@@ -136,15 +127,23 @@ navbar.forEach((elem, index)=>{
 		const infoBody = document.querySelector<HTMLElement>('.info-body').innerHTML = `<span>Size: </span>${facts[`${factName}`].Size} km<br>
 		<span>Avarage Temperature: </span> ${facts[`${factName}`].AvarageTemp}'C <br>
 		<span>Info: </span> ${facts[`${factName}`].FunFact}_`
-		infoDiv.style.filter = "brightness(0%)"
-		infoDiv.style.transition = '300ms ease'
-			setTimeout(() => {
-				infoDiv.style.backgroundImage = "none"
-				infoDiv.style.filter = "brightness(100%)"
-		}, 300);
 	
 	}
-			)	}, 300);
+			)
+			result.style.opacity = '0'
+			console.log(arr[index].calculateWeight)
+			result.style.transition = '300ms ease'
+			infoDiv.style.backgroundImage = "none"
+			
+
+		setTimeout(() => {// @ts-ignore
+			
+			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()} kg`
+			result.style.opacity = '1'
+
+			
+	
+		}, 300);
 			
 			
 	})
