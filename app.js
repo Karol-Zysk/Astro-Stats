@@ -58,8 +58,12 @@ var submit = document.querySelector('.submit');
 var chosePlanetTitle = document.querySelector('.chose-planet-title');
 submit.addEventListener('click', function () {
     submit.style.borderStyle = "solid";
-    chosePlanetTitle.style.display = "block";
-    navbarDiv.style.display = "grid";
+    setTimeout(function () {
+        chosePlanetTitle.style.display = "block";
+    }, 400);
+    setTimeout(function () {
+        navbarDiv.style.display = "grid";
+    }, 1000);
 });
 function Planet(name, gravity, funFact) {
     this.name = name,
@@ -87,14 +91,31 @@ navbar.forEach(function (elem, index) {
         if (arr[index] == blackHole) {
             console.log('pupa');
             stats.style.animationPlayState = 'running';
+            var infoDiv_1 = document.querySelector('.info').style.animationPlayState = 'running';
         }
         result.style.opacity = '0';
         console.log(arr[index].calculateWeight);
         result.style.transition = '300ms ease';
         setTimeout(function () {
-            result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight());
+            result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight(), " kg");
             result.style.opacity = '1';
-            infoDiv.innerHTML = "<div class=\"info grid-elem\">\n\t<div class=\"celestial-body\" style=\"background-image: url(./img/".concat(arr[index].name, ".png);\"></div>\n\t<div class=\"info-title\">").concat(arr[index].name, "</div>\n\t<div class=\"info-body\">The universal force of attraction acting between all matter.<br>").concat(arr[index].funFact, "<br>\n\tbut what would happen if we suddenly found ourselves on another planet?</div>\n\t</div>");
+            fetch('./facts.json')
+                .then(function (response) {
+                return response.json();
+            })
+                .then(function (facts) {
+                var factName = arr[index].name;
+                infoDiv.style.transition = "ease 300ms";
+                var celestialBody = document.querySelector('.celestial-body').style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
+                var infoTitle = document.querySelector('.info-title').innerHTML = "".concat(arr[index].name);
+                var infoBody = document.querySelector('.info-body').innerHTML = "<span>Size: </span>".concat(facts["".concat(factName)].Size, " km<br>\n\t\t<span>Avarage Temperature: </span> ").concat(facts["".concat(factName)].AvarageTemp, "'C <br>\n\t\t<span>Info: </span> ").concat(facts["".concat(factName)].FunFact, "_");
+                infoDiv.style.filter = "brightness(0%)";
+                infoDiv.style.transition = '300ms ease';
+                setTimeout(function () {
+                    infoDiv.style.backgroundImage = "none";
+                    infoDiv.style.filter = "brightness(100%)";
+                }, 300);
+            });
         }, 300);
     });
 });

@@ -1,0 +1,17 @@
+{
+    "Mercury": 
+    {"Size" : 8, 
+    "AvarageTemp" : 108, 
+    "FunFact" : "Lorem  1ipsum"
+    },
+    "Venus" : "Lorem23 ipsum",
+    "Mars" : "Lorem3 ipsum",
+    "Jupiter" : "Lorem 4ipsum",
+    "Saturn" : "Lorem5 ipsum",
+    "Uranus" : "Lorem6 ipsum",
+    "Neptun" : "Lorem6 ipsum",
+    "Pluto" : "Lorem6 ipsum",
+    "Moon" : "Lorem6 ipsum",
+    "Sun" : "Lorem6 ipsum",
+    "Black Hole NGC 4889" : "Lorem6 ipsum"
+}

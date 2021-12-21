@@ -72,8 +72,13 @@ const chosePlanetTitle = document.querySelector<HTMLElement>('.chose-planet-titl
 
 submit.addEventListener('click', ()=>{
 	submit.style.borderStyle = "solid"
-	chosePlanetTitle.style.display = "block"
-	navbarDiv.style.display = "grid"
+	setTimeout(() => {
+		chosePlanetTitle.style.display = "block"
+	}, 400);
+	setTimeout(() => {
+		navbarDiv.style.display = "grid"
+	}, 1000);
+	
 } )
 
 function Planet(name:string, gravity:number, funFact:string) {
@@ -106,25 +111,46 @@ navbar.forEach((elem, index)=>{
 		if(arr[index] == blackHole){
 			console.log('pupa')
 			stats.style.animationPlayState = 'running'
+			const infoDiv = document.querySelector<HTMLElement>('.info').style.animationPlayState = 'running'
 		}
 		
 		result.style.opacity = '0'
 		console.log(arr[index].calculateWeight)
 		result.style.transition = '300ms ease'
+
 		setTimeout(() => {// @ts-ignore
-			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()}`
+			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()} kg`
 			result.style.opacity = '1'
-			infoDiv.innerHTML = `<div class="info grid-elem">
-	<div class="celestial-body" style="background-image: url(./img/${arr[index].name}.png);"></div>
-	<div class="info-title">${arr[index].name}</div>
-	<div class="info-body">The universal force of attraction acting between all matter.<br>${arr[index].funFact}<br>
-	but what would happen if we suddenly found ourselves on another planet?</div>
-	</div>`
+
+			
+	
+	fetch('./facts.json')
+	.then(function  (response) {
+	  return response.json();
+	})
+	.then(function (facts){
+		let factName = arr[index].name
+		infoDiv.style.transition = "ease 300ms"
+		const celestialBody = document.querySelector<HTMLElement>('.celestial-body').style.backgroundImage = `url(./img/${arr[index].name}.png)`
+		const infoTitle = document.querySelector<HTMLElement>('.info-title').innerHTML = `${arr[index].name}`
+		const infoBody = document.querySelector<HTMLElement>('.info-body').innerHTML = `<span>Size: </span>${facts[`${factName}`].Size} km<br>
+		<span>Avarage Temperature: </span> ${facts[`${factName}`].AvarageTemp}'C <br>
+		<span>Info: </span> ${facts[`${factName}`].FunFact}_`
+		infoDiv.style.filter = "brightness(0%)"
+		infoDiv.style.transition = '300ms ease'
+			setTimeout(() => {
+				infoDiv.style.backgroundImage = "none"
+				infoDiv.style.filter = "brightness(100%)"
 		}, 300);
+	
+	}
+			)	}, 300);
+			
+			
 	})
 })
 
-const infoDiv = document.querySelector('.info')
+const infoDiv = document.querySelector<HTMLElement>('.info')
 
 
 
