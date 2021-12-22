@@ -1,5 +1,6 @@
 const weightInput = document.querySelector<HTMLInputElement>('.weight-input')
-function init() {
+const err = document.createElement('p')
+function init(): void {//@ts-ignore
 	weightInput.value = "";
 	}
 	window.onload = init;
@@ -12,7 +13,6 @@ const createSnow = () => {
 	// star2.classList.add('star2')
 	star.textContent = '.'
 	// star2.textContent = '.'
-
 	star.style.right = Math.random() * (header.clientWidth) -350 + 'px'
 	star.style.top = Math.random() * 150 + 'px'
 	star.style.animationDuration = "15s"
@@ -57,7 +57,7 @@ function YourWeight(weight:number, a: number) {
 
 YourWeight(3, 3)
 
-console.log(weightInput.value)
+// console.log(weightInput.value)
 const stats =document.querySelector<HTMLElement>('.stats')
 const navbarDiv = document.querySelector<HTMLElement>('.navbar')
 const navbar = document.querySelectorAll('.navbar-el')
@@ -71,14 +71,29 @@ const submit = document.querySelector<HTMLElement>('.submit')
 const chosePlanetTitle = document.querySelector<HTMLElement>('.chose-planet-title')
 
 submit.addEventListener('click', ()=>{
-	submit.style.borderStyle = "solid"
-	setTimeout(() => {
-		chosePlanetTitle.style.display = "block"
-	}, 400);
-	setTimeout(() => {
-		navbarDiv.style.display = "grid"
-	}, 1000);
-	
+	let num1 = weightInput.value
+	console.log(num1)
+	if(!/[^a-zA-Z]/.test(num1)){
+		
+		err.innerHTML = `>.Error No. 71830 It is not your weight_<br>ToolTip: Try digits from 0 to 9`
+		err.classList.add('info-body')
+		stats.appendChild(err)
+		setTimeout(() => {
+			err.remove()
+		}, 4000);
+	}
+	else{
+		
+		err.remove()
+		submit.style.borderStyle = "dashed"
+		setTimeout(() => {
+			chosePlanetTitle.style.display = "block"
+		}, 400);
+		setTimeout(() => {
+			navbarDiv.style.display = "grid"
+		}, 1000);
+		err.remove()
+}
 } )
 
 function Planet(name:string, gravity:number, funFact:string) {
@@ -104,7 +119,7 @@ const blackHole = new Planet('NGC_4889', 56, "blabla")
 
 
 const arr = [mercury, venus, mars, jupiter, saturn, uranus, neptun, pluto, moon, sun, blackHole]
-
+function planetMath() {
 navbar.forEach((elem, index)=>{
 	elem.innerHTML += `${arr[index].name}`
 	elem.addEventListener('click', ()=>{
@@ -125,19 +140,21 @@ navbar.forEach((elem, index)=>{
 		infoDiv.style.transition = "ease 300ms"
 		const celestialBody = document.querySelector<HTMLElement>('.celestial-body')
 		celestialBody.style.backgroundImage = `url(./img/${arr[index].name}.png)`
-		if (`${arr[index].name}` == "NGC_4889"){
-			console.log('Its a black hole')
-			celestialBody.style.height = "30vw"
-			// celestialBody.style.position = "relative"
-		}
-		celestialBody.style.display = "block"
 		const infoTitle = document.querySelector<HTMLElement>('.info-title')
+
+	
+		celestialBody.style.display = "block"
 		infoTitle.innerHTML = `${arr[index].name}`
 		infoTitle.style.marginTop = "-2vh"
 		const infoBody = document.querySelector<HTMLElement>('.info-body').innerHTML = `<span>Size: </span>${facts[`${factName}`].Size} <br>
-		<span>Avarage Temperature: </span> ${facts[`${factName}`].AvarageTemp}'C <br>
+		<span> Temperature: </span> ${facts[`${factName}`].Temp}'C <br>
 		<span>Info: </span> ${facts[`${factName}`].FunFact}_`
-	
+		// if (`${arr[index].name}` == "NGC_4889"){
+		// 	console.log('Its a black hole')
+		// 	celestialBody.style.height = "30vw"
+		// 	infoTitle.style.marginTop = "-22vh"
+		// 	// celestialBody.style.position = "relative"
+		// }
 	}
 			)
 			result.style.opacity = '0'
@@ -158,7 +175,8 @@ navbar.forEach((elem, index)=>{
 			
 	})
 })
-
+}
+planetMath()
 const infoDiv = document.querySelector<HTMLElement>('.info')
 
 

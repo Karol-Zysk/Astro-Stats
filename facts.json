@@ -1,17 +1,57 @@
 {
     "Mercury": 
-    {"Size" : 8, 
-    "AvarageTemp" : 108, 
+    {"Size" : "38% the size of Earth",    
+    "Temp" : "-170°C to 449°C", 
+    "FunFact" : "Mercury is hot, but not too hot for ice"
+    },
+    "Venus" : 
+    {"Size" : "95% the size of Earth",    
+    "Temp" : "465°C", 
+    "FunFact" : "Venus doesn’t have any moons, and we aren’t sure why."
+    },
+    "Mars"  : 
+    {"Size" : "53% the size of Earth",    
+    "Temp" : "from -173°C to 127°C", 
+    "FunFact" : "Mars is sometimes called the Red Planet. It's red because of rusty iron in the ground. "
+    },
+    "Jupiter"  : 
+    {"Size" : "1,120% the size of Earth",    
+    "Temp" : "-108°C", 
+    "FunFact" : "Jupiter is a great comet catcher."
+    },
+    "Saturn"  : 
+    {"Size" : "945% the size of Earth",    
+    "Temp" : "-138°C", 
+    "FunFact" : "No one knows how old Saturn’s rings are"
+    },
+    "Uranus"  : 
+    {"Size" : "400% the size of Earth",    
+    "Temp" : "-195°C", 
+    "FunFact" : "Uranus orbits the Sun once every 84 years"
+    },
+    "Neptun"  : 
+    {"Size" : "388% the size of Earth",    
+    "Temp" : "-201°C", 
+    "FunFact" : "While on Earth we are concerned about hurricanes, the strength of these storms is nowhere near what you would find on Neptune, winds blow at more 1,770 km/h"
+    },
+    "Pluto"  : 
+    {"Size" : "16% the size of Earth",    
+    "Temp" : "-233°C", 
+    "FunFact" : "Pluto has yet to complete a full orbit of the Sun since its discovery, as one Plutonian year is 247.68 years long"
+    },
+    "Moon"  : 
+    {"Size" : "27% the size of Earth",    
+    "Temp" : "-127°C to -173°C", 
+    "FunFact" : "The Moon is moving approximately 3.8 cm away from our planet every year."
+    },
+    "Sun"  : 
+    {"Size" : "It holds 99.8% of the solar system's mass and is roughly 109 times the diameter of the Earth — about one million Earths could fit inside the sun",    
+    "Temp" : "2 million °C in core and 6000°C at the surface", 
     "FunFact" : "Lorem  1ipsum"
     },
-    "Venus" : "Lorem23 ipsum",
-    "Mars" : "Lorem3 ipsum",
-    "Jupiter" : "Lorem 4ipsum",
-    "Saturn" : "Lorem5 ipsum",
-    "Uranus" : "Lorem6 ipsum",
-    "Neptun" : "Lorem6 ipsum",
-    "Pluto" : "Lorem6 ipsum",
-    "Moon" : "Lorem6 ipsum",
-    "Sun" : "Lorem6 ipsum",
-    "NGC_4889" : "Lorem6 ipsum"
+    "NGC_4889" : 
+    {"Size" : 8,    
+    "Temp" : 108, 
+    "FunFact" : "Lorem  1ipsum"
+    }
 }

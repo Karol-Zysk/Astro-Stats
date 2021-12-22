@@ -1,4 +1,5 @@
 var weightInput = document.querySelector('.weight-input');
+var err = document.createElement('p');
 function init() {
     weightInput.value = "";
 }
@@ -44,7 +45,7 @@ function YourWeight(weight, a) {
     console.log(planetWeight);
 }
 YourWeight(3, 3);
-console.log(weightInput.value);
+// console.log(weightInput.value)
 var stats = document.querySelector('.stats');
 var navbarDiv = document.querySelector('.navbar');
 var navbar = document.querySelectorAll('.navbar-el');
@@ -57,13 +58,27 @@ var result = document.querySelector('.result');
 var submit = document.querySelector('.submit');
 var chosePlanetTitle = document.querySelector('.chose-planet-title');
 submit.addEventListener('click', function () {
-    submit.style.borderStyle = "solid";
-    setTimeout(function () {
-        chosePlanetTitle.style.display = "block";
-    }, 400);
-    setTimeout(function () {
-        navbarDiv.style.display = "grid";
-    }, 1000);
+    var num1 = weightInput.value;
+    console.log(num1);
+    if (!/[^a-zA-Z]/.test(num1)) {
+        err.innerHTML = ">.Error No. 71830 It is not your weight_<br>ToolTip: Try digits from 0 to 9";
+        err.classList.add('info-body');
+        stats.appendChild(err);
+        setTimeout(function () {
+            err.remove();
+        }, 4000);
+    }
+    else {
+        err.remove();
+        submit.style.borderStyle = "dashed";
+        setTimeout(function () {
+            chosePlanetTitle.style.display = "block";
+        }, 400);
+        setTimeout(function () {
+            navbarDiv.style.display = "grid";
+        }, 1000);
+        err.remove();
+    }
 });
 function Planet(name, gravity, funFact) {
     this.name = name,
@@ -85,44 +100,48 @@ var moon = new Planet('Moon', 56, "blabla");
 var sun = new Planet('Sun', 56, "blabla");
 var blackHole = new Planet('NGC_4889', 56, "blabla");
 var arr = [mercury, venus, mars, jupiter, saturn, uranus, neptun, pluto, moon, sun, blackHole];
-navbar.forEach(function (elem, index) {
-    elem.innerHTML += "".concat(arr[index].name);
-    elem.addEventListener('click', function () {
-        if (arr[index] == blackHole) {
-            console.log('pupa');
-            stats.style.animationPlayState = 'running';
-            var infoDiv_1 = document.querySelector('.info');
-            infoDiv_1.style.animationPlayState = 'running';
-        }
-        fetch('./facts.json')
-            .then(function (response) {
-            return response.json();
-        })
-            .then(function (facts) {
-            var factName = arr[index].name;
-            infoDiv.style.transition = "ease 300ms";
-            var celestialBody = document.querySelector('.celestial-body');
-            celestialBody.style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
-            if ("".concat(arr[index].name) == "NGC_4889") {
-                console.log('Its a black hole');
-                celestialBody.style.height = "30vw";
-                // celestialBody.style.position = "relative"
+function planetMath() {
+    navbar.forEach(function (elem, index) {
+        elem.innerHTML += "".concat(arr[index].name);
+        elem.addEventListener('click', function () {
+            if (arr[index] == blackHole) {
+                console.log('pupa');
+                stats.style.animationPlayState = 'running';
+                var infoDiv_1 = document.querySelector('.info');
+                infoDiv_1.style.animationPlayState = 'running';
             }
-            celestialBody.style.display = "block";
-            var infoTitle = document.querySelector('.info-title');
-            infoTitle.innerHTML = "".concat(arr[index].name);
-            infoTitle.style.marginTop = "-2vh";
-            var infoBody = document.querySelector('.info-body').innerHTML = "<span>Size: </span>".concat(facts["".concat(factName)].Size, " <br>\n\t\t<span>Avarage Temperature: </span> ").concat(facts["".concat(factName)].AvarageTemp, "'C <br>\n\t\t<span>Info: </span> ").concat(facts["".concat(factName)].FunFact, "_");
+            fetch('./facts.json')
+                .then(function (response) {
+                return response.json();
+            })
+                .then(function (facts) {
+                var factName = arr[index].name;
+                infoDiv.style.transition = "ease 300ms";
+                var celestialBody = document.querySelector('.celestial-body');
+                celestialBody.style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
+                var infoTitle = document.querySelector('.info-title');
+                celestialBody.style.display = "block";
+                infoTitle.innerHTML = "".concat(arr[index].name);
+                infoTitle.style.marginTop = "-2vh";
+                var infoBody = document.querySelector('.info-body').innerHTML = "<span>Size: </span>".concat(facts["".concat(factName)].Size, " <br>\n\t\t<span> Temperature: </span> ").concat(facts["".concat(factName)].Temp, "'C <br>\n\t\t<span>Info: </span> ").concat(facts["".concat(factName)].FunFact, "_");
+                // if (`${arr[index].name}` == "NGC_4889"){
+                // 	console.log('Its a black hole')
+                // 	celestialBody.style.height = "30vw"
+                // 	infoTitle.style.marginTop = "-22vh"
+                // 	// celestialBody.style.position = "relative"
+                // }
+            });
+            result.style.opacity = '0';
+            console.log(arr[index].calculateWeight);
+            result.style.transition = '300ms ease';
+            infoDiv.style.backgroundImage = "none";
+            setTimeout(function () {
+                result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight(), " kg");
+                result.style.opacity = '1';
+            }, 300);
         });
-        result.style.opacity = '0';
-        console.log(arr[index].calculateWeight);
-        result.style.transition = '300ms ease';
-        infoDiv.style.backgroundImage = "none";
-        setTimeout(function () {
-            result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight(), " kg");
-            result.style.opacity = '1';
-        }, 300);
     });
-});
+}
+planetMath();
 var infoDiv = document.querySelector('.info');
 console.log(arr);
