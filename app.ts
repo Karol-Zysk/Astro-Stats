@@ -100,7 +100,7 @@ const neptun = new Planet('Neptun', 56, "blabla")
 const pluto = new Planet('Pluto', 56, "blabla")
 const moon = new Planet('Moon', 56, "blabla")
 const sun = new Planet('Sun', 56, "blabla")
-const blackHole = new Planet('Black Hole NGC 4889', 56, "blabla")
+const blackHole = new Planet('NGC_4889', 56, "blabla")
 
 
 const arr = [mercury, venus, mars, jupiter, saturn, uranus, neptun, pluto, moon, sun, blackHole]
@@ -111,7 +111,8 @@ navbar.forEach((elem, index)=>{
 		if(arr[index] == blackHole){
 			console.log('pupa')
 			stats.style.animationPlayState = 'running'
-			const infoDiv = document.querySelector<HTMLElement>('.info').style.animationPlayState = 'running'
+			const infoDiv = document.querySelector<HTMLElement>('.info')
+			infoDiv.style.animationPlayState = 'running'
 		}
 		
 	
@@ -122,9 +123,18 @@ navbar.forEach((elem, index)=>{
 	.then(function (facts){
 		let factName = arr[index].name
 		infoDiv.style.transition = "ease 300ms"
-		const celestialBody = document.querySelector<HTMLElement>('.celestial-body').style.backgroundImage = `url(./img/${arr[index].name}.png)`
-		const infoTitle = document.querySelector<HTMLElement>('.info-title').innerHTML = `${arr[index].name}`
-		const infoBody = document.querySelector<HTMLElement>('.info-body').innerHTML = `<span>Size: </span>${facts[`${factName}`].Size} km<br>
+		const celestialBody = document.querySelector<HTMLElement>('.celestial-body')
+		celestialBody.style.backgroundImage = `url(./img/${arr[index].name}.png)`
+		if (`${arr[index].name}` == "NGC_4889"){
+			console.log('Its a black hole')
+			celestialBody.style.height = "30vw"
+			// celestialBody.style.position = "relative"
+		}
+		celestialBody.style.display = "block"
+		const infoTitle = document.querySelector<HTMLElement>('.info-title')
+		infoTitle.innerHTML = `${arr[index].name}`
+		infoTitle.style.marginTop = "-2vh"
+		const infoBody = document.querySelector<HTMLElement>('.info-body').innerHTML = `<span>Size: </span>${facts[`${factName}`].Size} <br>
 		<span>Avarage Temperature: </span> ${facts[`${factName}`].AvarageTemp}'C <br>
 		<span>Info: </span> ${facts[`${factName}`].FunFact}_`
 	

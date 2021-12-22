@@ -249,21 +249,21 @@ input[type=number] {
     font-size: 7vh;
     width: fit-content;
     margin-left: 2vw;
-    margin-top: -8vh;
 }
 .celestial-body{
-    
-    width: 20vw;
+    display: none;
+    /* width: 20vw; */
     height: 20vw;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     position: relative;
-    left: 25vw;
+    left: 20vw;
 }
 
 .info-body{
     margin-left: 2vw;
-    margin-top: 4vh;
-    font-size: 3.5vh;
+    margin-top: 1vh;
+    font-size: 3.7vh;
     color: white;
 }
 
