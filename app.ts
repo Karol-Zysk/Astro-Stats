@@ -1,13 +1,12 @@
 const weightInput = document.querySelector<HTMLInputElement>('.weight-input')
 const err = document.createElement('p')
-function init(): void {//@ts-ignore
+function init(): void {
 	weightInput.value = "";
 	}
 	window.onload = init;
     
-const createSnow = () => {
+const createStar = () => {
 	const star = document.createElement('i')
-	// const star2 = document.createElement('i')
     const header = document.querySelector('.header')
 	star.classList.add('star')
 	// star2.classList.add('star2')
@@ -16,10 +15,6 @@ const createSnow = () => {
 	star.style.right = Math.random() * (header.clientWidth) -350 + 'px'
 	star.style.top = Math.random() * 150 + 'px'
 	star.style.animationDuration = "15s"
-	// star2.style.right = Math.random() * (header.clientWidth) + 'px'
-	// star2.style.top = Math.random() * 300 + 'px'
-	// star2.style.animationDuration = "15s"
-	// star.style.opacity = Math.random()
 	
 
 	header.append(star)
@@ -31,31 +26,8 @@ const createSnow = () => {
 	}, 15000)
 }
 
-setInterval(createSnow, 600)
+setInterval(createStar, 600)
 
-const planetGravity: Array<number> = [
-	15,
-	35,
-	45,
-	55,
-	900,
-	1000,
-	123333,
-	30000,
-	40000,
-	70000,
-	1232423423532462,
-]
-
-
-
-function YourWeight(weight:number, a: number) {
-
-	let planetWeight:number = weight * planetGravity[a]
-	console.log(planetWeight)
-}
-
-YourWeight(3, 3)
 
 // console.log(weightInput.value)
 const stats =document.querySelector<HTMLElement>('.stats')
@@ -105,17 +77,17 @@ function Planet(name:string, gravity:number, funFact:string) {
 	}
 }
 
-const mercury = new Planet('Mercury', 56, "blabla")
-const venus = new Planet('Venus', 52336, "blabla")
-const mars = new Planet('Mars', 546, "blabla")
-const jupiter = new Planet('Jupiter', 556, "blabla")
-const saturn = new Planet('Saturn', 6, "blabla")
-const uranus = new Planet('Uranus', 576, "blabla")
-const neptun = new Planet('Neptun', 56, "blabla")
-const pluto = new Planet('Pluto', 56, "blabla")
-const moon = new Planet('Moon', 56, "blabla")
-const sun = new Planet('Sun', 56, "blabla")
-const blackHole = new Planet('NGC_4889', 56, "blabla")
+const mercury = new Planet('Mercury', 0.38, "blabla")
+const venus = new Planet('Venus', 0.91, "blabla")
+const mars = new Planet('Mars', 0.38, "blabla")
+const jupiter = new Planet('Jupiter', 2.54, "blabla")
+const saturn = new Planet('Saturn', 1.08, "blabla")
+const uranus = new Planet('Uranus', 0.91, "blabla")
+const neptun = new Planet('Neptun', 1.19, "blabla")
+const pluto = new Planet('Pluto', 0.06, "blabla")
+const moon = new Planet('Moon', 0.17, "blabla")
+const sun = new Planet('Sun', 27.9, "blabla")
+const blackHole = new Planet('NGC_4889', 754, "blabla")
 
 
 const arr = [mercury, venus, mars, jupiter, saturn, uranus, neptun, pluto, moon, sun, blackHole]
@@ -129,8 +101,6 @@ navbar.forEach((elem, index)=>{
 			const infoDiv = document.querySelector<HTMLElement>('.info')
 			infoDiv.style.animationPlayState = 'running'
 		}
-		
-	
 		fetch('./facts.json')
 	.then(function  (response) {
 	  return response.json();
@@ -139,13 +109,20 @@ navbar.forEach((elem, index)=>{
 		let factName = arr[index].name
 		infoDiv.style.transition = "ease 300ms"
 		const celestialBody = document.querySelector<HTMLElement>('.celestial-body')
-		celestialBody.style.backgroundImage = `url(./img/${arr[index].name}.png)`
+		
 		const infoTitle = document.querySelector<HTMLElement>('.info-title')
 
 	
 		celestialBody.style.display = "block"
+		celestialBody.style.opacity = "0"
+		celestialBody.style.transition = "opacity 300ms ease"
+		setTimeout(() => {
+			celestialBody.style.backgroundImage = `url(./img/${arr[index].name}.png)`
+			celestialBody.style.opacity = "1"
+		}, 600);
+		
 		infoTitle.innerHTML = `${arr[index].name}`
-		infoTitle.style.marginTop = "-2vh"
+		infoTitle.style.marginTop = "-8vh"
 		const infoBody = document.querySelector<HTMLElement>('.info-body').innerHTML = `<span>Size: </span>${facts[`${factName}`].Size} <br>
 		<span> Temperature: </span> ${facts[`${factName}`].Temp}'C <br>
 		<span>Info: </span> ${facts[`${factName}`].FunFact}_`
@@ -165,7 +142,7 @@ navbar.forEach((elem, index)=>{
 
 		setTimeout(() => {// @ts-ignore
 			
-			result.innerHTML = `On ${arr[index].name} you will weight ${arr[index].calculateWeight()} kg`
+			result.innerHTML = `On ${arr[index].name} you will weight ${Math.floor(arr[index].calculateWeight())} kg`
 			result.style.opacity = '1'
 
 			

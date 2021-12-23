@@ -219,6 +219,11 @@ input[type=number] {
     cursor: pointer;
 }
 
+.submit:hover{
+  background-color: rgba(44, 44, 44, 0.356);
+  transition: all 200ms ease;
+}
+
 
 .result{
     color: blanchedalmond;
@@ -251,6 +256,7 @@ input[type=number] {
     margin-left: 2vw;
 }
 .celestial-body{
+    opacity: 1;
     display: none;
     /* width: 20vw; */
     height: 20vw;
@@ -260,7 +266,11 @@ input[type=number] {
     left: 20vw;
 }
 
+span{
+  font-size: 4.2vh;
+}
 .info-body{
+  line-height: 1.2;
     margin-left: 2vw;
     margin-top: 1vh;
     font-size: 3.7vh;

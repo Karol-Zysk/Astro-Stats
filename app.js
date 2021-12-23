@@ -88,17 +88,17 @@ function Planet(name, gravity, funFact) {
             return weightInput.value * this.gravity;
         };
 }
-var mercury = new Planet('Mercury', 56, "blabla");
-var venus = new Planet('Venus', 52336, "blabla");
-var mars = new Planet('Mars', 546, "blabla");
-var jupiter = new Planet('Jupiter', 556, "blabla");
-var saturn = new Planet('Saturn', 6, "blabla");
-var uranus = new Planet('Uranus', 576, "blabla");
-var neptun = new Planet('Neptun', 56, "blabla");
-var pluto = new Planet('Pluto', 56, "blabla");
-var moon = new Planet('Moon', 56, "blabla");
-var sun = new Planet('Sun', 56, "blabla");
-var blackHole = new Planet('NGC_4889', 56, "blabla");
+var mercury = new Planet('Mercury', 0.38, "blabla");
+var venus = new Planet('Venus', 0.91, "blabla");
+var mars = new Planet('Mars', 0.38, "blabla");
+var jupiter = new Planet('Jupiter', 2.54, "blabla");
+var saturn = new Planet('Saturn', 1.08, "blabla");
+var uranus = new Planet('Uranus', 0.91, "blabla");
+var neptun = new Planet('Neptun', 1.19, "blabla");
+var pluto = new Planet('Pluto', 0.06, "blabla");
+var moon = new Planet('Moon', 0.17, "blabla");
+var sun = new Planet('Sun', 27.9, "blabla");
+var blackHole = new Planet('NGC_4889', 754, "blabla");
 var arr = [mercury, venus, mars, jupiter, saturn, uranus, neptun, pluto, moon, sun, blackHole];
 function planetMath() {
     navbar.forEach(function (elem, index) {
@@ -118,11 +118,16 @@ function planetMath() {
                 var factName = arr[index].name;
                 infoDiv.style.transition = "ease 300ms";
                 var celestialBody = document.querySelector('.celestial-body');
-                celestialBody.style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
                 var infoTitle = document.querySelector('.info-title');
                 celestialBody.style.display = "block";
+                celestialBody.style.opacity = "0";
+                celestialBody.style.transition = "opacity 300ms ease";
+                setTimeout(function () {
+                    celestialBody.style.backgroundImage = "url(./img/".concat(arr[index].name, ".png)");
+                    celestialBody.style.opacity = "1";
+                }, 600);
                 infoTitle.innerHTML = "".concat(arr[index].name);
-                infoTitle.style.marginTop = "-2vh";
+                infoTitle.style.marginTop = "-8vh";
                 var infoBody = document.querySelector('.info-body').innerHTML = "<span>Size: </span>".concat(facts["".concat(factName)].Size, " <br>\n\t\t<span> Temperature: </span> ").concat(facts["".concat(factName)].Temp, "'C <br>\n\t\t<span>Info: </span> ").concat(facts["".concat(factName)].FunFact, "_");
                 // if (`${arr[index].name}` == "NGC_4889"){
                 // 	console.log('Its a black hole')
@@ -136,7 +141,7 @@ function planetMath() {
             result.style.transition = '300ms ease';
             infoDiv.style.backgroundImage = "none";
             setTimeout(function () {
-                result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(arr[index].calculateWeight(), " kg");
+                result.innerHTML = "On ".concat(arr[index].name, " you will weight ").concat(Math.floor(arr[index].calculateWeight()), " kg");
                 result.style.opacity = '1';
             }, 300);
         });
