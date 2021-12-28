@@ -403,3 +403,118 @@ i.star2 {
             filter: brightness(0%);
       }
   }
+
+
+  @media (max-width: 600px) {
+
+    * {
+ overflow: visible;
+  }
+
+.container{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* grid-template-columns: 1fr;
+  grid-template-rows: aut; */
+  /* justify-items: stretch;  */
+  /* justify-content: stretch; */
+ /* justify-self: stretch; */
+  /* flex-basis: auto; */
+  /* overflow-Y: visible; */
+  height: fit-content;
+
+}
+
+.header{
+  grid-row: 1 / 2;
+  /* height: auto; */
+  /* position: sticky; */
+}
+.stats{
+  grid-row: 2 / 3;;
+  grid-column: 1 / -1;
+  width: 100vw;
+  /* height: auto; */
+  border-bottom: 3px solid white;
+  
+  /* height: fit-content; */
+}
+.info{
+  grid-row: 3 / 4;
+  grid-column: 1 / -1;
+  width: 100vw;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  /* height: 40vh; */
+  /* position: relative; */
+  /* height: 40vh; */
+}
+.info-title{
+  margin-top: 8vh;
+}
+
+#img{
+  display: none;
+  position: relative;
+  width: 100vw;
+  z-index: 7;
+  height: 20vh;
+}
+#mobile-img{
+  display: block;
+  position: relative;
+  width: 100vw;
+  z-index: 7;
+  height: 25vh;
+}
+
+.astronaut{
+  position: absolute;
+  left: 50%;
+  top: 1vh;
+  background-image: url(./img/astronaut.png);
+  width: 8vw;
+  height: 8vh;
+  
+}
+
+.submit-2{
+  font-size: 3.3vh;
+  width: fit-content;
+}
+
+.weight-input{
+  width: 10vw;
+}
+
+.submit{
+  width: fit-content;
+  font-size: 3.3vh;
+}
+
+
+.chose-planet-title span{
+  font-size: 3.3vh;
+  width: 100vw;
+  display: block;
+  word-wrap: normal;
+}
+
+.navbar-el{
+  font-size: 3.3vh;
+}
+
+span{
+  font-size: 4.8vh;
+  letter-spacing: 2;
+}
+.result{
+  font-size: 3.5vh;
+}
+.celestial-body{
+  left: 60vw;
+}
+
+  }
